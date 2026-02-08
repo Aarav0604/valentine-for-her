@@ -1,162 +1,60 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>For Arshu ❤️</title>
-
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      min-height: 100vh;
-      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-      font-family: 'Segoe UI', sans-serif;
-      text-align: center;
-      color: white;
-      overflow-x: hidden;
-    }
-
-    h1 {
-      font-size: 2.8rem;
-      margin-top: 40px;
-    }
-
-    p {
-      font-size: 1.2rem;
-      max-width: 600px;
-      margin: 15px auto;
-      padding: 0 15px;
-    }
-
-    img {
-      width: 180px;
-      height: 180px;
-      object-fit: cover;
-      border-radius: 50%;
-      margin-top: 25px;
-      border: 5px solid white;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-    }
-
-    .buttons {
-      margin-top: 35px;
-    }
-
-    button {
-      font-size: 1.2rem;
-      padding: 12px 28px;
-      border: none;
-      border-radius: 30px;
-      cursor: pointer;
-      margin: 10px;
-      transition: transform 0.2s;
-    }
-
-    #yes {
-      background: #ff4d6d;
-      color: white;
-    }
-
-    #yes:hover {
-      transform: scale(1.1);
-    }
-
-    #no {
-      background: white;
-      color: #ff4d6d;
-      position: absolute;
-    }
-
-    #message {
-      display: none;
-      margin-top: 40px;
-      font-size: 1.3rem;
-      padding: 0 20px;
-    }
-
-    /* Floating hearts */
-    .heart {
-      position: fixed;
-      color: rgba(255,255,255,0.8);
-      font-size: 20px;
-      animation: float 6s linear infinite;
-    }
-
-    @keyframes float {
-      0% {
-        transform: translateY(100vh) scale(1);
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(-10vh) scale(1.5);
-        opacity: 0;
-      }
-    }
-  </style>
-</head>
-
 <body>
 
-  <!-- Background music -->
-  <audio autoplay loop>
-    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_6c38c1eae0.mp3" type="audio/mpeg">
-  </audio>
+<audio id="bgMusic" loop>
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_6c38c1eae0.mp3" type="audio/mpeg">
+</audio>
 
-  <h1>Arshu, Will You Be My Valentine? 💖</h1>
+<!-- STEP 1 -->
+<div id="step1">
+  <h1>Before anything else… ❤️</h1>
+  <p>
+    You once asked me a question.<br><br>
+    And my answer has always been —
+  </p>
+  <h1 style="font-size:3.5rem;">YES 💖</h1>
+
+  <button onclick="goNext()">Next →</button>
+</div>
+
+<!-- STEP 2 -->
+<div id="step2" style="display:none;">
+  <h1>Arshu, will you be my Valentine? 💕</h1>
 
   <img src="arshu.jpg" alt="Arshu">
 
-  <p>
-    I don’t know how to explain it perfectly…<br>
-    but life feels lighter, happier, and better with you in it.
-  </p>
-
   <div class="buttons">
-    <button id="yes" onclick="sayYes()">YES 💕</button>
+    <button id="yes" onclick="sayYes()">YES 💘</button>
     <button id="no" onmouseover="moveNo()">NO 😶</button>
   </div>
 
   <div id="message">
     <p>
-      You just said YES… and honestly,<br><br>
-      that made my whole world smile ❤️<br><br>
-      I promise effort over excuses,<br>
-      laughter over silence,<br>
-      and care even on ordinary days.<br><br>
+      You just made my heart very happy ❤️<br><br>
+      Thank you for choosing me.<br>
+      I promise care, effort, and lots of smiles 😊<br><br>
       Happy Valentine’s Day, Arshu 🌹
     </p>
   </div>
+</div>
 
-  <script>
-    function moveNo() {
-      const noBtn = document.getElementById("no");
-      const x = Math.random() * (window.innerWidth - 120);
-      const y = Math.random() * (window.innerHeight - 120);
-      noBtn.style.left = x + "px";
-      noBtn.style.top = y + "px";
-    }
+<script>
+function goNext() {
+  document.getElementById("step1").style.display = "none";
+  document.getElementById("step2").style.display = "block";
+}
 
-    function sayYes() {
-      document.getElementById("message").style.display = "block";
-    }
+function moveNo() {
+  const noBtn = document.getElementById("no");
+  const x = Math.random() * (window.innerWidth - 120);
+  const y = Math.random() * (window.innerHeight - 120);
+  noBtn.style.left = x + "px";
+  noBtn.style.top = y + "px";
+}
 
-    // Floating hearts generator
-    setInterval(() => {
-      const heart = document.createElement("div");
-      heart.className = "heart";
-      heart.innerHTML = "❤️";
-      heart.style.left = Math.random() * 100 + "vw";
-      heart.style.fontSize = Math.random() * 20 + 15 + "px";
-      document.body.appendChild(heart);
-
-      setTimeout(() => {
-        heart.remove();
-      }, 6000);
-    }, 300);
-  </script>
+function sayYes() {
+  document.getElementById("message").style.display = "block";
+  document.getElementById("bgMusic").play();
+}
+</script>
 
 </body>
-</html>
